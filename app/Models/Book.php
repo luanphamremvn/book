@@ -11,21 +11,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 /**
  * @property mixed $categoryIds
  * @property mixed $categories
+ * @property mixed $description
+ * @property mixed $image
+ * @property mixed $id
  */
 class Book extends Model
 {
-    public mixed $name;
-    /**
-     * @var mixed|string
-     */
-    public mixed $slug;
-    public mixed $id;
-    /**
-     * @var $uploadFileService
-     */
     protected mixed $uploadFileService;
-    public string $image;
-    public string $description;
 
     public function __construct(array $attributes = [])
     {
