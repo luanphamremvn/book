@@ -39,7 +39,7 @@ class BookService extends BaseService
                 'filters' => $filters
             ]);
 
-            return throw new Exception('Error fetching books');
+            throw new Exception('Error fetching books');
         }
     }
 

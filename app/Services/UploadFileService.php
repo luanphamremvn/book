@@ -49,7 +49,7 @@ class UploadFileService {
      */
     public function getFile(string $path):string|null {
 
-        $file = $this->disk->url($path);
+        $file = $this->disk?->url($path);
         return $this->handleFileOperation($file, "Get file:".$path);
     }
 

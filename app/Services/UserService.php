@@ -37,10 +37,10 @@ class UserService extends BaseService
      * Create a new user
      *
      * @param array $data
-     * @return Model
+     * @return Model|null
      * @throws Exception
      */
-    public function createUser(array $data): Model
+    public function createUser(array $data): Model|null
     {
         try {
             $user = null;
