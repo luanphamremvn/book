@@ -12,6 +12,6 @@
             </p>
             <p class="text-xs text-gray-500">Định dạng file: SVG, PNG, JPEG</p>
         </div>
-        <input id="dropzone-file" type="file" name="{{ $name }}" class="hidden" />
+        <input id="dropzone-file" type="file" name="{{ $name }}" class="hidden" require />
     </label>
 </div>

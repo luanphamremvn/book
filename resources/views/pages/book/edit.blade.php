@@ -1,6 +1,7 @@
 @extends('layouts.master-layout')
 
 @section('content')
+    {{ Breadcrumbs::render('book.edit') }}
     @if (isset($book))
         <form method="post" action="{{ route('books.update', ['book' => $book->id]) }}" enctype="multipart/form-data"
             class="max-w-lg mx-auto bg-white p-6">
@@ -58,7 +59,7 @@
                 <label for="categories" class="peer-focus:font-medium text-sm text-gray-500  duration-300 transform">
                     Thể loại
                 </label>
-                <x-dropdown name="categories" :options="$categories" :selected="$book->categoryIds" />
+                <x-dropdown name="categories" :options="$categories" :selected="old('categories') ?? $book->categoryIds" />
                 @error('categories')
                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">
                         {{ $message }}
@@ -72,7 +73,7 @@
                 </label>
                 <textarea id="description" name="description" rows="8"
                     class="mt-4 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
-                    placeholder="Mô tả nội dung sách.">{{ old('description', $book->description) }}
+                    placeholder="Mô tả nội dung sách." required>{{ old('description', $book->description) }}
                 </textarea>
                 @error('description')
                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">

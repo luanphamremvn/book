@@ -12,22 +12,22 @@
 <body class="bg-[#f8f8f8] text-[#1b1b18] flex min-h-screen flex-col light">
     <!-- toast -->
     @if (\Session::has('success'))
-        <x-toast :message="Session::get('success')" />
+    <x-toast :message="Session::get('success')" />
     @elseif(Session::has('error'))
-        <x-toast type="danger" :message="Session::get('error')" />
+    <x-toast type="danger" :message="Session::get('error')" />
     @endif
 
     {{-- error message --}}
     @if (\Session::has('errorMessage'))
-        <div class="alert alert-danger">
-            {{ Session::get('errorMessage') }}
-        </div>
+    <div class="alert alert-danger">
+        {{ Session::get('errorMessage') }}
+    </div>
     @endif
 
 
     {{-- navbar --}}
     @auth
-        @include('partial.navbar')
+    @include('partial.navbar')
     @endauth
     {{-- end navbar --}}
 

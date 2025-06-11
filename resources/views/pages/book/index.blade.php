@@ -1,5 +1,6 @@
 @extends('layouts.master-layout')
 @section('content')
+    {{ Breadcrumbs::render('book') }}
     <div class="w-full flex justify-end mb-8 text-gray-700">
         <form class="lg:w-[55%] w-full mx-aut">
             <div class="flex flex-col sm:flex-row gap-2">

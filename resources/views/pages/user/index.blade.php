@@ -1,5 +1,6 @@
 @extends('layouts.master-layout')
 @section('content')
+    {{ Breadcrumbs::render('user') }}
     <div class="w-full flex justify-end mb-8 text-gray-700">
         <form class="lg:w-[35%] w-full mx-aut">
             <div class="flex flex-row gap-3">

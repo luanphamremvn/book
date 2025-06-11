@@ -1,6 +1,7 @@
 @extends('layouts.master-layout')
 
 @section('content')
+    {{ Breadcrumbs::render('user.create') }}
     <form method="post" action="{{ route('users.store') }}" enctype="multipart/form-data"
         class="max-w-xl mx-auto bg-white p-6">
         @csrf
