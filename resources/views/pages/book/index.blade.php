@@ -3,64 +3,83 @@
     {{ Breadcrumbs::render('book') }}
     <div class="w-full flex justify-end mb-8 text-gray-700">
         <form class="lg:w-[55%] w-full mx-aut">
-            <div class="flex flex-col sm:flex-row gap-2">
-                <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                        </svg>
+
+            <div class="flex flex-col sm:flex-row gap-2 items-baseline">
+                <div class="flex flex-col sm:w-auto w-full">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                            </svg>
+                        </div>
+                        <input datepicker id="default-datepicker" type="text" name="published_at"
+                            value="{{ old('published_at', @$filters['published_at']) }}"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 lg:min-w-[150px]"
+                            placeholder="Ngày xuất bản">
                     </div>
-                    <input datepicker id="default-datepicker" type="text" name="published_at"
-                        value="{{ old('published_at', @$filters['published_at']) }}"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 lg:min-w-[150px]"
-                        placeholder="Ngày xuất bản">
+                    <div>
+                        @error('published_at')
+                            <span class="text-red-500 text-xs">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
 
-                <div class="w-full flex flex-row">
-                    <button id="dropdown-button" data-dropdown-toggle="dropdown"
-                        class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 "
-                        type="button">
-                        Thể Loại
-                        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 4 4 4-4" />
-                        </svg>
-                    </button>
-                    <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 ">
-                        <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdown-button">
-                            @foreach ($categories as $category)
-                                <li>
-                                    <button type="button" for="categories"
-                                        class="inline-flex w-full items-center px-4 py-2 hover:bg-gray-100 :hover:bg-gray-600">
-                                        <input name="categories[]" type="checkbox" value="{{ $category->id }}"
-                                            class="w-4 h-4 mr-1.5 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500"
-                                            @checked(in_array($category->id, old('categories[]', @$filters['categories'] ?? [])))>
-                                        <span>{{ $category->name }}</span>
-                                    </button>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="relative w-full">
-                        <input type="search" id="search-dropdown" name="q" value="{{ old('q', @$filters['q']) }}"
-                            class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500  "
-                            placeholder="Tên sách, Tác giả, Mô tả ..." />
-                        <button type="submit"
-                            class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
-                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 20 20">
+                <div class="w-full flex flex-row h-auto">
+                    <div class="flex flex-row w-full">
+                        <button id="dropdown-button" data-dropdown-toggle="dropdown"
+                            class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 "
+                            type="button">
+                            Thể Loại
+                            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                    d="m1 1 4 4 4-4" />
                             </svg>
-                            <span class="sr-only cursor-pointer">Search</span>
                         </button>
+                        <div id="dropdown"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 ">
+                            <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdown-button">
+                                @foreach ($categories as $category)
+                                    <li>
+                                        <button type="button" for="categories"
+                                            class="inline-flex w-full items-center px-4 py-2 hover:bg-gray-100 :hover:bg-gray-600">
+                                            <input name="categories[]" type="checkbox" value="{{ $category->id }}"
+                                                class="w-4 h-4 mr-1.5 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500"
+                                                @checked(in_array($category->id, old('categories[]', @$filters['categories'] ?? [])))>
+                                            <span>{{ $category->name }}</span>
+                                        </button>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="relative w-full">
+                            <input type="search" id="search-dropdown" name="q" value="{{ old('q', @$filters['q']) }}"
+                                class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500  "
+                                placeholder="Tên sách, Tác giả, Mô tả ..." />
+                            <button type="submit"
+                                class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
+                                <span class="sr-only cursor-pointer">Search</span>
+                            </button>
+                        </div>
+                        <div>
+                            @error('categories')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                            @error('categories')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <a href="{{ route('books.create') }}"
-                    class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center min-w-1 sm:min-w-30 sm:w-auto w-30 ml-auto">
+                    class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-3 text-center min-w-1 sm:min-w-30 sm:w-auto w-30 ml-auto">
                     Thêm Sách
                 </a>
             </div>
