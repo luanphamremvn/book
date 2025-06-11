@@ -30,6 +30,12 @@ class UploadFileService {
      */
     public function uploadFile(string $path, File|StreamInterface|string|UploadedFile $contents):string|bool {
         $file = $this->disk->put($path, file_get_contents($contents));
+        // Check if the file was upload error
+        if ($file === false) {
+            // Log the error message
+            Log::error("Upload file:".$path);
+            return new Exception(sprintf("['filesystem'] %s %s","Error", "Upload file:".$path));
+        }
         return $this->handleFileOperation($file, "Upload file:".$path);
     }
 

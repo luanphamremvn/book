@@ -50,12 +50,12 @@ class BookRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.min' => 'tên sách ít nhất 5 ký tự',
+            'name.min' => 'tên sách ít nhất 3 ký tự',
             'name.max' => 'tên sách tối đa 255 ký tự',
             'author.min' => 'tên tác giả ít nhất 3 ký tự',
             'author.max' => 'tên tác giả tối đa 50 ký tự',
             'description.min' => 'mô tả ít nhất 20 ký tự',
-            'description.max' => 'mô tả 2500 ký tự',
+            'description.max' => 'Mô tả không được vượt quá 2500 ký tự.',
             'categories.required' => 'vui lòng chọn thể loại',
             'categories.exits' => 'có 1 thể loại bạn vừa chọn đã bị xoá hoặc không tồn tại',
             'published_at.required' => 'vui lòng chọn ngày xuất bản',

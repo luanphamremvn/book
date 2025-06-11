@@ -56,7 +56,7 @@
             </div>
             {{-- published_at --}}
             <div class="relative z-0 w-full mb-5 group">
-                <label for="categories" class="peer-focus:font-medium text-sm text-gray-500  duration-300 transform">
+                <label for="categories" class="peer-focus:font-medium text-xs text-gray-500  duration-300 transform">
                     Thể loại
                 </label>
                 <x-dropdown name="categories" :options="$categories" :selected="old('categories') ?? $book->categoryIds" />
@@ -68,7 +68,7 @@
             </div>
             {{-- description --}}
             <div class="w-full mb-5 group">
-                <label for="description" class="peer-focus:font-medium  text-sm text-gray-500 ">
+                <label for="description" class="peer-focus:font-medium  text-xs text-gray-500 ">
                     Mô tả
                 </label>
                 <textarea id="description" name="description" rows="8"
@@ -83,7 +83,7 @@
             </div>
             {{-- image --}}
             <div class="w-full mb-5 group">
-                <label for="image" class="ppeer-focus:font-medium text-sm text-gray-500">
+                <label for="image" class="ppeer-focus:font-medium text-xs text-gray-500">
                     Ảnh bìa
                 </label>
                 <x-upload-input name="image" class="mt-3" />
